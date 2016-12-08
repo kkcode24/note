@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+/*作用域考核
+*  注意：这是一个极容易又极容易出错的基础面试题。
+*/  
+	var str1 = 'global';
+	function t1(){
+		console.log(str1);
+		// str2 = 'local';//注释去掉后的运行结果
+		console.log(str2);
+		var str2 = 'local';
+	}
+	t1();
+	</script>
+
+	<!-- 
+	1.词法分析：
+	  var str1; //此时str1定义但是未被赋值，所以str1的值为undefined
+	  t1{
+	  var str2; //此时str2定义但是未被赋值，所以str2的值为undefined
+	  t1{
+	  }
+	2.执行语句顺序为：
+	str1 = 'global';
+	console.log(str1);
+	console.log(str2);
+	str2 = 'local';
+	3.输出
+	 global 
+	 undefined 
+	 -->
+</body>
+</html>

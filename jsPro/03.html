@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	function t1() {
+		var d;
+		function t2(){
+			 d = 5;
+			 e = 6;
+		}
+		t2();
+	}
+	t1(); 
+	console.log(e);// 6
+	console.log(d);//d is not defined 错误
+	console.log(window.d);//undefined
+
+/******注意：
+*以window.xxx引用全局变量，寻找不到，作为某个属性不存在，返回undefined
+*变量定义了，但是没有赋值
+*
+* 以XXX引用某变量，寻找不到，则报xxx is not defined 错误。变量未定义。
+*/
+	var str1 = 'global';
+		function t1(){
+			console.log(str1);
+			// str2 = 'local';
+			console.log(str2);
+			var str2 = 'local';//var str2="local";
+		}
+	t1();
+/*
+js代码自上而下执行，但是js代码在执行前有一个词法分析的过程。
+
+以上面的结果为例：
+1步：先分析t1函数，
+t1{
+	var str2;//分析出t1内有str2局部变量，但此时变量未被赋值，值为undefined
+}
+2步：执行t1函数。
+console.log(str1);//global
+console.log(str2);//undefined
+str2 = 'local';//此时str2的值为local
+*/
+</script>
+</html>

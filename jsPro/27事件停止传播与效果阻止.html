@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	#china{
+		width: 600px;
+		height: 600px;
+		border:1px solid gray;
+	}
+	#bj,#hd{
+		width: 80%;
+		height: 80%;
+		margin: auto;
+	}
+
+	#bj{
+		border:1px solid blue;
+	}
+	#hd{
+		border: 1px solid red;
+	}
+
+	</style>
+</head>
+<body>
+	<div id="china">
+	china
+		<div id="bj">
+		beijing
+			<div id="hd">
+				haiding
+			</div>
+		</div>
+	</div>
+
+	<form action="" id="fm">
+		<p><input type="text" id="age" name="age" /></p>
+		<input type="submit" value="提交" />
+	</form>
+</body>
+<script type="text/javascript">
+/*	思考：事件（捕捉/冒泡）的过程中，能否阻止事件的传播？
+	比如：被beijing捕捉后，事件结束，haidian就不能捕捉了
+	或hd冒泡后，事件结束，beijing就别想冒泡了。
+	答：当然能，可以停止事件的传播。
+	    w3c标准模型下：
+	    使用事件对象的stopPropagation();
+	    IE8及以下：
+	    ev.cancelBubble = true;
+*/
+	function $(id){
+		return document.getElementById(id);
+	}
+
+	$('china').addEventListener('click',function(){alert('进入china捕捉');},true);
+	$('bj').addEventListener('click',function(ev){
+		alert('进入beijing捕捉');
+		ev.stopPropagation();
+	},true);
+	$('hd').addEventListener('click',function(){alert('进入haiding捕捉');},true);
+
+	$('china').addEventListener('click',function(){alert('离开china');},false);
+	$('bj').addEventListener('click',function(){alert('离开beijing');},false);
+	$('hd').addEventListener('click',function(){alert('离开haiding');},false);
+
+/*	思考：以表单为例，我想点击onsubmit时，检查表单是否填写完整。
+          如果不完全不让他提交，即---取消事件本应有的效果。该怎样做？
+
+          答：使用事件对象的preventDefault();
+              IE下：ev.renturnValue = false;
+*/
+
+	$('fm').addEventListener('submit',function(ev){
+		if($('age').value == ''){
+			alert('你不能提交');
+			ev.preventDefault();
+			/*ev.returnValue = false;
+			IE8及以下，IE9及以上使用ev.preventDefault();
+
+			if(ev.preventDefault) {    
+                   // Firefox    
+                   ev.preventDefault();
+                   ev.stopPropagation();
+            } else {    
+		            // IE    
+				    ev.cancelBubble=true;
+				    ev.returnValue = false;
+				    }
+
+			*/
+		}
+	},false);
+</script>
+</html>

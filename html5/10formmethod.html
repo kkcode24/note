@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>formmethod</title>
+</head>
+<body>
+	<!-- 在HTML4中，表单内的所有元素只能通过表单的action属性被统一提交到另一个页面，所以，每个表单内只有一个method的属性来统一指定提交方法。而在HTML5中，可以使用formmethod属性来对每一个表单元素分别指定不同的提交方法。 -->
+	<form id="testform">
+		<input type="submit" formmethod="post">提交
+		<input type="submit" formmethod="get">提交
+	</form>
+</body>
+</html>

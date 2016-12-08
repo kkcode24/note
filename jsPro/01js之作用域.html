@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>变量作用域</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+/*作用域
+*  在js中函数嵌套是非常普遍的，
+*  在函数嵌套中，对变量是如何寻找的？
+*  答:首先在函数内寻找，寻找不到则往外层寻找···直到全局（window）区域
+*/
+	var c =5;
+	function t1(){
+		var d =6;
+		function t2(){
+			// var d =3;  //注意去掉注释后的变化
+			var e =7;
+			alert(c+d+e);
+		}
+	  t2();
+	}
+	t1();
+</script>
+</html>

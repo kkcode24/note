@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js面向对象中的静态方法</title>
+</head>
+<body>
+	1.构造函数通过new来制造对象
+	2.函数本身也是对象。
+</body>
+<script type="text/javascript">
+	var Hashiqi = function(){
+		this.bark = function(){
+			alert('wangwang');
+		}
+	}
+	Hashiqi.ajax = function(){
+		alert('ajax');
+	}
+
+	var h = new Hashiqi();//h有没有ajax方法。答：没有。
+	/*
+	1.ajax()方法是属于函数本身的，和返回的对象没有关系
+	2.bark()方法要调用必须new Hashiqi()得到对象，且由返回对象才能调用
+	3.而ajax()方法要调用，不需要new对象，直接用Hashiqi来调用
+	*/
+	h.bark();
+	Hashiqi.ajax();
+	/*
+     我们之前有没有接触过静态方法？
+     答：有。
+     1.Math.random(); 静态方法
+     2.$.ajax();   静态方法
+     3.写jquery插件，2种方法。
+        3.1通过闭包，把方法写到jquery上的原型上，(稍复杂，下一门jquery源码研究讲)
+        3.2直接增加$对象的静态方法。
+	*/
+</script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.8.2/jquery.js"></script>
+
+<script type="text/javascript">
+	//通过静态方法，给jquery增加唱歌插件。
+	$.sing = function(){
+		alert('一千个伤心的理由');
+	}
+	$.sing();
+</script>
+</html>

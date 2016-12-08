@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>继承的解释</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	function cat(){
+    	this.climb = function(){
+    		alert('我会爬树');
+    	}
+    }
+    console.log(cat.prototype);//空对象，显示为cat
+    console.log(cat.prototype.constructor);
+    //因为原型对象的constructor指向function cat(){}
+
+    console.log(cat.prototype.__proto__);//空对象object
+    console.log(cat.prototype.__proto__.__proto__);//null
+</script>
+</html>

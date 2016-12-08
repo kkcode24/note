@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function pig(){
+			this.eat = function(){
+				alert('我能吃三十斤');
+			}
+		}
+		//在原型链上加上一个唱歌方法,系统的对象首字母大写Object
+		Object.prototype.sing = function(){
+			alert('出卖我的爱');
+		}
+		var zhu = new pig();
+		pig.sing();
+	</script>
+</body>
+</html>

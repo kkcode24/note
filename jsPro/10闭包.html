@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>闭包</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function t1(){
+			var age = 20;
+			function t2(){
+				alert(age);
+			}
+			return t2;
+		}
+		var tmp = t1();
+		var age = 99;
+		tmp();//20
+		/*
+        在大部分的语言中，t1被调用执行，则申请内存，并把局部变量push入栈。
+        t1函数执行完毕，内部的局部变量随着函数的退出而销毁。因此，age = 20这个局部变量就消失了。
+
+		但是在js中，age = 20这个变量却被t2捕捉，
+		即使t1执行完毕，通过t2依然能够访问该变量。
+		这种情况》返回的函数，并非孤立的函数，甚至把其周围的变量环境，形
+		成了封闭的“环境包”，共同返回，所以叫闭包。
+
+		概括：函数的作用域取决于声明时，而不取决于调用时。
+		*/
+	</script>
+</body>
+</html>

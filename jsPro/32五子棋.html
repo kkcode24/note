@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>五子棋</title>
+	<style type="text/css">
+	#container{
+		width: 700px;
+		height: 600px;
+		margin:0 auto;
+		border:1px solid blue;
+		background: url('bg.png') no-repeat;
+		padding-top: 7px;
+		padding-left: 6px;
+	}
+	table{
+		border-collapse: collapse;
+		width: 700px;
+		height: 525px; 
+	}
+	td{
+		width: 20px;
+		height: 30px;
+		border-radius: 50%;
+	}
+	</style>
+	<script type="text/javascript">
+		window.onload = function t(){
+			//闭包计棋器
+			var cnt = (function(){
+				var curr = 'black';
+				return function(){
+					var tmp = curr;
+					if (curr=='black') {
+						curr = 'white'; 
+					}else{
+						curr = 'black';
+					}
+					return tmp;
+				}
+			})();
+
+			document.getElementsByTagName('table')[0].onclick = initAll;
+			function initAll(ev){
+				xia.call(ev.target);
+			}
+
+			var tds = document.getElementsByTagName('td');
+			var iswin = false;
+
+			var xia = function(){
+				if (iswin) {
+					alert('下次再玩');
+					return;
+				}
+
+
+				if (this.style.backgroundColor) {
+					alert('此处已有棋');
+					return;
+				}
+				var color=this.style.backgroundColor = cnt();
+				judge.call(this,color);//下完棋后，判断胜负。
+			}
+
+            //判断胜负的函数
+			var judge = function(color){
+				//找到当前这颗棋的坐标
+			    //alert('x:'+this.cellIndex+'y:'+this.parentElement.rowIndex);
+			  var curr = {x:this.cellIndex,y:this.parentElement.rowIndex,color:color};
+			  var line = {0:'',1:'',2:'',3:''};
+			  //循环225个单元格
+              for (var i = 0,temp={}; i < tds.length; i++) {
+
+		        // console.log({x:tds[i].cellIndex,y:tds[i].parentElement.rowIndex});
+		         //取当前循环到的这颗棋的坐标及其颜色，b(black),w(white),0(null)来表示
+		         temp = {x:tds[i].cellIndex,y:tds[i].parentElement.rowIndex,color:'0'};
+
+		         if(tds[i].style.backgroundColor=='black'){
+		         	temp.color = 'b';
+		         }else if(tds[i].style.backgroundColor=='white'){
+		         	temp.color = 'w';
+		         }
+
+		         if (curr.y==temp.y) {//在一条横线上
+		         	line[0] += temp.color;
+		         }
+		         if (curr.x==temp.x) {
+		         	line[1] +=temp.color;
+		         }
+		         if ((curr.x+curr.y)==(temp.x+temp.y)) {
+		         	line[2] +=temp.color;
+		         }
+		         if ((curr.x-temp.x)==(curr.y-temp.y)) {
+		         	line[3] += temp.color;
+		         }
+			  }			 
+			  //console.log(line);
+			  //判断四条线上，有没有连续的4个w或者4个b
+			  color = color=='black'?'bbbbb':'wwwww';
+			  for(var i=0;i<4;i++){
+			  	if(line[i].indexOf(color)>=0){
+			  		color=color=='bbbbb'?'黑方胜!!!':'白方胜!!!';
+			  		alert(color);
+			  		iswin = true;
+			  	}
+			  }
+			}
+		}
+	</script>
+</head>
+<body>
+<div id="container">
+	<table>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+</div>
+</body>
+</html>

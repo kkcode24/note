@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	#china{
+		width: 600px;
+		height: 600px;
+		border:1px solid gray;
+	}
+	#bj,#hd{
+		width: 80%;
+		height: 80%;
+		margin: auto;
+	}
+
+	#bj{
+		border:1px solid blue;
+	}
+	#hd{
+		border: 1px solid red;
+	}
+
+	</style>
+</head>
+<body>
+	<div id="china">
+	china
+		<div id="bj">
+		beijing
+			<div id="hd">
+				haiding
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	function $(id){
+		return document.getElementById(id);
+	}
+
+	$('china').addEventListener('click',function(){alert('进入china捕捉');},true);
+	$('bj').addEventListener('click',function(){alert('进入beijing捕捉');},true);
+	$('hd').addEventListener('click',function(){alert('进入haiding捕捉');},true);
+
+	$('china').addEventListener('click',function(){alert('离开china');},false);
+	$('bj').addEventListener('click',function(){alert('离开beijing');},false);
+	$('hd').addEventListener('click',function(){alert('离开haiding');},false);
+	/*
+	思考：如果在‘hd’div点击一下，那么，点击的效果：
+	是向内聚焦：china ——>beijing->haiding
+	还是向外扩散：haiding->beijing->china
+
+	w3c标准中，同时支持这两种方式，分别称为：
+	外->内：捕捉模型  true
+	内->外：冒泡模型  false
+
+	第三个参数true/false代表捕捉/冒泡模型，如果不填，默认false（建议不要省略）
+	事件对象，如何表示？
+	答：系统会为事件函数自动传入事件对象，作为第一个参数传入。
+	*/
+</script>
+</html>

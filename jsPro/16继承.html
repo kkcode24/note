@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>继承</title>
+</head>
+<body>
+	js没有类的概念，因此，js的继承不是通过类来实现的。
+	而是通过“原型”的概念来完成的
+</body>
+<script type="text/javascript">
+    //这个构造函数用来制造对象
+	function tiger(){
+		this.bark = function(){
+			alert('我是百兽之王');
+		}
+	}
+
+	var huzi = new tiger();
+	    /*以java为例，应该让tigre继承cat类，但js做不到。
+    那么如何让老虎有猫的属性呢？ ==》照猫画虎
+    我们明确的对‘tigre函数’指定，用某个具体的‘cat对象’做原型，并创建老虎对象。
+    */
+    function cat(){
+    	this.climb = function(){
+    		alert('我会爬树');
+    	}
+    }
+    var bosi = new cat();
+    huzi.bark();
+    bosi.climb();
+    //huzi.climb();//老虎没有爬树的方法。
+
+    //开始继承
+    tiger.prototype = new cat();//使用cat对象做原型，创建老虎对象。
+    var hnhu = new tiger();
+    hnhu.climb();
+    /*在这个过程中发生了什么？
+    1.构造对象hnhu{}
+    2.hnhu.bark = function (){}
+    3.hnhu.__proto__=tiger.prototype  //这是继承的关键。
+
+    就是说==》js中，每个对象都有一个__proto__指向其原型对象。
+    原型对象也是对象啊，也有__proto__
+
+    ----原型的原型的原型的原型--是谁？//null
+    */
+</script>
+</html>

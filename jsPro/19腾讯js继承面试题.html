@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function Dog(){
+			this.bark = function (){
+				alert('汪汪');
+			}
+		}
+
+		function peter(){
+			this.fire = function(){
+				alert('第一斗犬');
+			}
+		}
+
+		peter.prototype = new Dog();
+		var peter = new peter();
+		peter.bark();
+
+		function huzi(){
+			this.eat = function(){
+				alert('第一吃货');
+			}
+		}
+
+		huzi.prototype = new Dog();
+		huzi.prototype.bark = function(){
+			alert('呜呜');
+		}
+		var huzi = new huzi();
+		huzi.bark();
+	</script>
+</body>
+</html>

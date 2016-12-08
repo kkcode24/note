@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+	/* 高级事件编程：通过自定义函数来解决以下问题。
+    	IE的事件模型相比W3C的标准事件，主要有三点不同：
+    	1.绑定的事件函数不一样，IE中用attachEvent();
+    	删除用detachEvent();
+    	2.事件必须要加on, 比如：标准中第一个参数为click，
+    	  IE中要写onclick
+    	3.IE6，7，8中先绑定的事件后发生; 
+    */
+
+
+	/*参数解释：
+	  obj:待绑定的事件对象
+	  type：事件类型，click，mouseover，change等
+	  event：事件函数
+	  model：true/false 捕捉/冒泡
+	*/
+
+		function addEvent(obj,type,event,model){
+			if (!obj[('__'+type)]) {//判断obj的自定义属性是否存在
+				obj[('__'+type)] = [];//如不存在，则创建并赋值为空数组
+			}
+			
+			obj[('__'+type)].push(event);
+
+			if (!obj['on'+type]) {
+				obj['on'+type] = function(){
+					var len = obj[('__'+type)].length;
+					for (var i = 0; i < len; i++) {
+						obj[('__'+type)][i].apply(obj);
+					}
+				}
+			}
+
+
+			/*if (obj.attachEvent) {
+				//此处建议判断参数的合法性
+				obj.attachEvent('on'+type,event,model);
+			}
+			else{
+				obj.addEventListener(type,event,model);
+			}*/
+		}
+
+		window.onload = initAll;
+		function initAll(){
+			var obj = document.getElementById('test1')
+			function jump(){
+				alert('自定义添加事件函数 '+this);
+			}
+			function jump2(){
+				alert('自定义添加事件函数2 '+this);
+			}
+			addEvent(obj,'click',jump,false);
+			addEvent(obj,'click',jump2,false);
+		}
+	</script>
+</head>
+<body>
+<input type="button" id="test1" value="点我">
+</body>
+<script type="text/javascript">
+	/*思考：
+	1.如何自定义的函数还能解除绑定。
+    2.如何给event的事件传多个参数。 
+	*/
+</script>
+</html>

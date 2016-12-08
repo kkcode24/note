@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>关键字var的作用</title>
+</head>
+<body>
+	
+</body>
+	<script type="text/javascript">
+/*关键字var
+* var是在函数运行的上下文中，声明一个变量。
+* 如果不加var，则是一个赋值操作，不要狭隘的理解为声明一个全局变量(见03.html)
+*/
+		console.log(window.d);//undefined
+		console.log(window.e);//undefined
+		function t(){
+			d =5;//d没加var，仅仅是一个赋值操作，寻找t函数域内，没找到，继续寻找——————>window,没找到，执行window.d
+			var e = 6;
+		}
+		t();
+		console.log(window.d);//5
+		console.log(window.e);//undefined
+	</script>
+</html>

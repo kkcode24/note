@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>词法分析步骤</title>
+	<script type="text/javascript">
+/*
+词法分析：
+第一步：先分析参数
+第二步：再分析变量声明
+第三步：再分析函数声明
+
+一个函数能使用的局部变量，就从上面的三步分析而来。
+
+具体步骤：
+0：函数运行前的一瞬间，生成Active Object(活动对象)，下称AO
+1：1.1函数声明的参数形成AO的属性，值全是undefined
+   1.2接收实参，形成AO相应属性的值。
+2：分析变量声明声明声明，var age；
+如果AO上还没有age属性，则添加AO属性，值是undefined
+如果AO上已有age属性，则不做任何变化。
+3：分析函数声明，如：function foo(){}
+则把函数赋给AO.foo属性
+注：如果此前有foo属性，则会被无情的覆盖。
+*/
+		function t(age){
+			alert(age);
+		}
+		t(3);//3
+		t();//undefined
+/*
+词法分析过程：
+0:形成AO = {}
+1:AO{age:undefined}   
+运行过程：
+t(3)-->AO.age=3;alert(AO.age);//3
+t()--->Ao.age没有得到赋值//undefined
+*/
+       function t2(age){
+       	var age = 99;
+       	alert(age);
+       }
+       t2();//99  
+/*
+分析过程：
+0：形成AO = {}
+1：1.1分析形参AO{age:undefined}
+   1.2接收实参AO{age:undefined}
+2: 分析变量声明，发现AO上已有age属性，不做任何变化。
+
+执行过程：
+AO.age = 99;
+alert(age);//99
+*/
+       function t3(greet){
+       	var greet='hello';
+       	alert(greet);
+       	function greet(){
+
+       	}
+       	alert(greet);
+       }
+       t3(null);//hello
+/*
+词法分析：
+0：形成AO = {}
+1：1.1分析形参 AO = {greet:undefined}
+   1.2接收实参AO{greet:null}
+2: 分析变量声明，发现AO上已有greet属性，不做任何变化。
+3：分析函数声明，被无情覆盖，所以AO = {greet：function greet(){}}
+执行过程:
+greet = 'hello';
+alert(greet);
+alert(greet);
+*/
+    function a(b){
+    	alert(b);
+    	function b(){
+    		alert(b);
+    	}
+    	b();
+    }
+    a(1);//两个函数
+/*
+词法分析：
+0：形成AO = {}
+1：1.1 分析形参 AO = {b:undefined}
+   1.2 接收实参 AO = {b:1}
+2: 分析变量声明，没有变量声明
+3：分析函数声明,之前的AO.b属性全部被无情覆盖，AO = {b:function b(){}}
+执行过程：
+alert(b);
+b(); //由作用域寻找到a函数中的b，即function，然后alert出来。
+*/
+     function a(b){
+    	alert(b);
+    	b=function(){
+    		alert(b);
+    	}
+    	b();
+    }
+    a(1);// 1 function
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

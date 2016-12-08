@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>formtarget</title>
+</head>
+<body>
+	<!-- 在html4中表单具有一个target属性，该属性用于指定在何处打开表单提交后所需要加载的页面。在HTML5中，可以对多个提交按钮分别使用formtarget属性来指定提交后在何处打开所需要加载的页面。 -->
+	<form id="testform">
+	 	<input type="submit" value="submit" formtarget="_blank" formaction="someURL1">提交到someURL1
+	 	<input type="submit" value="submit" formtarget="_self" formaction="someURL2">提交到someURL2
+	 	<input type="submit" value="submit" formtarget="_top" formaction="someURL2">提交到someURL2
+	 	<input type="submit" value="submit" formtarget="_parent" formaction="someURL2">提交到someURL2
+	 	<input type="submit" value="submit" formtarget="_framename" formaction="someURL2">提交到someURL2
+	 </form>
+	 <!-- autofocus attribute -->
+	<!--  为文本框，选择框，按钮控件加上autofocus属性，当页面打开时，该控件自动获取光标焦点。 -->
+	<form>
+		<input type="text">
+		<input type="text" autofocus>
+	</form>
+</body>
+</html>

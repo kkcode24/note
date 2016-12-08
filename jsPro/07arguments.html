@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>arguments</title>
+</head>
+<body>
+	<!-- arguments是什么？
+	答：是一个长的很像数组的对象。
+	arguments内容是什么？
+	答：是函数运行时的实参列表。 -->
+	<script type="text/javascript">
+		(function(d,e,f){
+			// alert(typeof arguments);
+			console.log(arguments);
+			console.log(arguments[3]);
+			arguments[0] = 'china';
+			console.log(d);
+			console.log(arguments.length);
+//真正收到的实参个数，在多态或函数重载里可以用到
+		})('hello','world','!','haha');
+//arguments收集了所有的实参，即使没有与之相对应的形参。
+
+
+//arguments.callee属性代表当前运行的函数。
+     (function(d,e,f){
+     	console.log(arguments.callee);
+     })('hello','world','!');
+
+
+     /*function t(n){
+     	if(n==1){
+     		return 1;
+     	}else{
+     		return n+t(n-1);
+     	}
+     }
+     alert(t(100));*/
+
+     alert((function t(n){
+     	if(n==1){
+     		return 1;
+     	}else{
+     		return n+arguments.callee(n-1);
+     	}
+     })(100));
+     //如果是匿名函数，又不许使用callee，也要完成递归，怎么办？提示：V算子
+     
+     /*
+      *函数运行期内，关键的三个对象，
+      *AO -->本函数AO上没有某属性，则继续去外层的AO上寻找，直到全局对象，
+      *叫做AO链(作用域链)
+      *arguments-->每个函数都有自己的callee，但不向外层寻找arguments的相关属性，不形成链
+      *this-->那个对象实例调用this所在的函数，那么this就代表那个对象实例
+     */
+	</script>
+</body>
+</html>

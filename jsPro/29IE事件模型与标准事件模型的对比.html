@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="test1">点我</button>
+</body>
+<script type="text/javascript">
+/*在IE9及其以上版本已经支持W3C的标准模型
+  在IE8及其以下版本不支持W3C的标准模型，注意兼容性问题。
+*/  var test1  = document.getElementById('test1');
+    if(test1.attachEvent){
+    	test1.attachEvent('onclick',function(){alert('捕捉');},true);
+	    test1.attachEvent('onclick',function(){alert('冒泡');},false);
+	}else{
+    test1.addEventListener('click',function(){alert('捕捉');},true);
+	test1.addEventListener('click',function(){alert('冒泡');},false);
+    }
+	/*准对IE模型的事件写法，适用于IE6，7，8
+	IE的事件模型相比W3C的标准事件，主要有三点不同：
+	1.绑定的事件函数不一样，IE中用attachEvent();
+	删除用detachEvent();
+	2.事件必须要加on, 比如：标准中第一个参数为click，
+	  IE中要写onclick
+	3.IE6，7，8中先绑定的事件后发生;
+	4.this指向问题：w3c中this指向被绑定的对象本身，
+	  而在IE中，this指向wendow,这一点比较麻烦，好在js能够弥补。
+	5.事件对象不一样，w3c中，事件对象被系统自动传递给事件函数的第一个参数，而在IE中，事件对象是window.event的属性值。
+	不过现在IE6，7，8已经支持自动传入event的对象。
+	*/
+</script>
+</html>

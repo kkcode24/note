@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>this练习题</title>
+</head>
+<body>
+	<script type="text/javascript">
+	    name = 'this is window';
+		var obj = {name:'php',t:function(){alert(this.name)}};
+		var dog = {name:'huzi'};
+		obj.t();
+		dog.t=obj.t;
+		dog.t();
+		var tmp = dog.t;
+		tmp();//this is window 相当于window.tmp()
+		(dog.t = obj.t)();//this is window 
+        dog.t.call(obj);
+		//(dog.t = obj.t)任何表达式都有返回值，所有它的返回值是“值”，即t函数
+		//强调是值，说明不是通过引用来调用的，而是立即使用函数本身
+		//效果等同于(function(){alert(this.name)})();立即调用，立即执行，执行完就扔
+	    //this指向null，null又被解释称window
+	    问：this操作的函数（如this.age=xx;）不能直接调用，需要new一下，然后调用。
+	    答：因为直接调用，this指向window，将会污染全局。
+	</script>
+</body>
+</html>

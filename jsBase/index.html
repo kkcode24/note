@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>document</title>
+<style type="text/css">
+body{background: silver;}
+#container{margin-top:50px;margin-left:50px;
+width:200px;background:#CFDFF0;float:left;font-family: 'Microsoft Yahei',sans-serif;}
+.ss{width:20px;height:20px;line-height:10px;}
+ul{display: none;}
+ul li{list-style-type:none;}
+a{text-decoration:none;color:black;}
+a:hover{color:red;font-size:18px;}
+#tools{position: absolute;top:50px;left:600px; float:left;}
+#content{width:800px;height:500px;margin-left: 80px;margin-top:40px;
+background:silver;float: left;border-top-width: 30px;border-top-color: #fff;}
+</style>
+</head>
+<body>
+<div id="container">
+<div>
+<input type="button" class="ss" onclick="on_off(this)" value="+" />js概述
+<ul>
+
+<input type="button" class="ss" onclick="on_off(this)" value="+" />简介
+<ul>
+<li><a href="content.html" target="in">什么是js</a></li>
+<li><a href="c1.html" target="in">js的特点</a></li>
+<li><a href="c2.html" target="in">js的应用</a></li>
+</ul>
+<br />
+<input type="button" class="ss" onclick="on_off(this)" value="+" />编写工具
+<ul>
+<li><a href="#">总括</a></li>
+</ul>
+
+</ul>
+</div>
+
+<div>
+<input type="button" class="ss" onclick="on_off(this)" value="+" />语言基础
+<ul>
+<input type="button" class="ss" onclick="on_off(this)" value="+" />注意事项
+<ul>
+<li><a href="#">关键字</a></li>
+<li><a href="#">标识符</a></li>
+<li><a href="#">命名规则</a></li>
+</ul>
+<br />
+<input type="button" class="ss" onclick="on_off(this)" value="+" />数据类型
+<ul>
+<li><a href="#">数值型</a></li>
+<li><a href="#">字符串型</a></li>
+<li><a href="#">布尔型</a></li>
+<li><a href="#">特殊数据类型</a></li>
+</ul>
+</ul>
+</div>
+</div>
+<div id="tools">
+背景<input type="button" value="浅蓝" onclick="color(this)" />
+    <input type="button" value="羊皮" onclick="color(this)" />
+</div>
+<iframe id="content" name="in">hello world</iframe>
+</body>
+
+<script type="text/javascript">
+  function on_off(obj){
+    
+	 if(obj.value=='+'){
+	     //obj.parentNode.childNodes[3].style.display='block';
+         obj.nextSibling.nextSibling.style.display='block';		 
+		 obj.value='-';
+	 }else{
+	     //obj.parentNode.childNodes[3].style.display='none';
+         obj.nextSibling.nextSibling.style.display='none';
+		 obj.value='+';
+	 }
+}
+ 
+ function color(obj){
+    var content=document.getElementById('content');
+    if(obj.value=='浅蓝'){
+        content.style.background="#CFDFF0";
+    }else if(obj.value=='羊皮'){
+        content.style.background="#FCB786"; 
+    }
+ }
+</script>
+
+</html>

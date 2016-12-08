@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>文本框属性</title>
+</head>
+<body>
+	<!-- placeholder,list,AutoComplete,parttern,SelectionDirection -->
+	<!-- placeholder是指当文本框处于未输入状态时显示的输入提示。当文本框处于未输入状态且未获取光标焦点时，模糊显示输入提示文字。 -->
+	<form>
+		<label id="label">
+		    姓名:
+			<input type="text" placeholder="请输入用户名"><br>
+			密码:
+			<input type="password" placeholder="请输入密码"><br>
+		</label>
+		<input type="reset" value="reset">
+		<input type="submit" value="submit">
+	</form>
+	<!-- list属性：
+	在HTML5中，为单行文本框增加了一个list属性，该属性的值为某个datalist元素的id。datalist元素也是HTML5中新增的元素，该元素类似于选择框，但是当用户想要设定的值不在选择列表之内时，允许自行输入。datalist元素本身并不显示，而是当文本框获得焦点时以提示输入的方式显示。
+	 -->
+	 <form>
+	 	<input type="text" name="greeting" list="greetings">
+	 	<datalist id="greetings">
+	 		<option value="HTML5学习">HTML5学习</option>
+	 		<option value="Android学习">Android学习</option>
+	 		<option value="IOS学习">IOS学习</option>
+	 	</datalist>
+	 	<!-- 
+	 	在FireFox中，需要双击输入框才能显示datalist中option的属性值
+	 	在chrome中，输入框右侧有一个倒三角，点击有datalist下拉option属性值 -->
+	 </form>
+	<!-- 
+	AutoComplete帮助输入所用的自动完成功能，是一个既节省输入时间又十分方便的功能。在HTML5之前，因为谁都可以看见输入的值，所以在安全方面存在缺陷，只要使用AutoComplete,属性值为on\off（开关）安全性方面也可以得到很好的控制。
+	-->
+	<!-- 
+	input 的属性autocomplete 默认为on
+	其含义代表是否让浏览器自动记录之前输入的值
+	很多时候，需要对客户的资料进行保密，防止浏览器软件或者恶意插件获取到
+	可以在input中加入autocomplete="off" 来关闭记录
+	系统需要保密的情况下可以使用此参数 
+	-->
+	<input type="text" name="greeting" autocomplete="on" list="greetings">
+	<datalist id="greetings">
+		<option value="HTML5学习">HTML5学习</option>
+	 	<option value="Android学习">Android学习</option>
+	 	<option value="IOS学习">IOS学习</option>
+	</datalist>
+	<!-- 在HTML5中，对input元素使用pattern属性，并且将属性值设为某个格式的正则表达式，在提交时会针对这些进行检查，检查其内容是否符合给定格式。当输入的内容不符合给定格式时，则不允许提交，同时在浏览器中显示信息提示文字，提示输入的内容必须符合给定格式 -->
+	<form action="someURL">
+		请输入内容:
+		<input type="text" pattern="[A-Z]{3}" name="part">
+		<input type="submit" value="submit">
+	</form>
+	<!-- 这对input元素和textarea元素，HTML5增加了SelectionDirection属性，当用户在这两个元素中用鼠标选取部分文字时，可以使用该属性来获取选取方向。当用户正向选取文字时，该属性值为forWord，当用户反向选取文字时，该属性值为backword，当用户没有选取任何文字时，该属性值为forword。 -->
+	<form>
+		<input type="text" name="test">
+		<input type="button" value="选我" onclick="AD()">
+	</form>
+</body>
+<script type="text/javascript">
+	function AD(){
+		var control = document.forms[3]['test'];
+		//var control = document.forms[3][0];
+		//console.log(control);
+		var Direction = control.selectionDirection;
+		alert(Direction);
+	}
+</script>
+</html>

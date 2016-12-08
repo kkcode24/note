@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>构造函数创建对象</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	function Dog(){
+		this.leg = 4;
+		this.bark = function(){
+			alert('汪汪');
+		}
+	}
+	var huzi = new Dog();
+	huzi.bark();
+
+	/*此处，我们并没有完成面向对象的封装。
+	所谓封装，就要封闭一部分，外界无法访问，开放一部分，通过开放部分间接访问私有部分
+
+	接下来，js之私有属性！请看15封装.html*/
+</script>
+</html>

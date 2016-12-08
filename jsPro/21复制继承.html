@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>复制继承</title>
+</head>
+<body>
+	复制继承就是把父对象的所有属性，直接复制到自己身（对象）上
+</body>
+<script type="text/javascript">
+	function Cat(leg,tail){
+			this.leg = leg;
+			this.tail = tail;
+			this.climb = function(){alert('我会爬树')};
+		}
+
+		function Tiger(color){
+			this.color = color;
+			this.extend = function(parent){
+				for(var key in parent){
+					console.log(key);
+				}
+			}
+		}
+
+		var tiger = new Tiger('yellow');
+		//tiger.climb();//出错
+		console.log(tiger);
+        tiger.extend(new Cat(4,1));
+        console.log(tiger);
+        tiger.climb();
+</script>
+</html>

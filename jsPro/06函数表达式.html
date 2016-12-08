@@ -1,0 +1,54 @@
+<!DOCTYPE html>  
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>函数表达式</title>
+</head>
+<body>
+	<script type="text/javascript">
+		//函数声明和函数表达式
+		//js被称为披着c语言外衣的lisp语言（函数式语言）
+		//函数可以赋值给变量，可以作为参数来传递。
+		function t1(){}
+		t2=function(){}
+	/*这两种方式效果是不同的。
+	*t1是函数声明，虽然全局内也得到一个t1变量，但值是function
+	*而t2只是一个赋值过程-----值是谁？值是右侧表示式的返回结果，即函数
+	*/
+	(function(window,undefined){})(window);
+	这是jquery的最外层代码，
+	function(window,undefined){}
+	//内层表达式，返回值是函数，包在小括号内，当作表达式来执行。
+	function(window,undefined){}()//立即调用。
+
+	//而内层函数又没有命名，称为匿名函数
+	//这种手法，匿名函数，立即执行，不污染全局。称为立即执行匿名函数表达式
+	//思考为什么传window又不传undefined？
+	//答：传window是为了速度，
+	function(){
+		function(){
+			function(){
+				function(){
+					function(){
+						document.getElementById('id tag');
+						//这个document将会沿着作用域层层上找，直到最外层。
+					}
+				}
+			}
+		}
+	}
+/*
+*jquery就是为了加快内部查找全局变量的速度，而直接把window以参数的形式传进来
+*这样window就在jquery内部的AO上
+*
+*不传undefined是为了安全
+*因为在IE，Firefox低版本中，undefined竟然可以重新赋值，如undefined = 3;
+* 声明undefined局部变量（名字是undefined而已），同时又不传参，值自然
+*是undefined，防止了外界对undefined的污染。
+*/
+
+/*学习好js，需要掌握
+①作用域链（AO链）②面向对象时的原型链 ③闭包*/
+	</script>
+</body>
+</html>

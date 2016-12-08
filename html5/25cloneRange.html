@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>cloneRange</title>
+	<script type="text/javascript">
+		function cloneRange(){
+			var rangeObj = document.createRange();
+			var pel = document.getElementById("pid");
+			rangeObj.selectNodeContents(pel);
+			var rangeClone = rangeObj.cloneRange();
+			alert(rangeClone);
+		}
+	</script>
+</head>
+<body>
+	<!-- Range对象的方法:
+	 cloneRange,cloneContents,extractContents 方法 
+	 insertNode方法，compareBoundaryPoints 方法 
+	 collapse,detach 方法 
+	-->
+	<!-- cloneRange -->
+	<p id="pid">这是随便书写的内容</p>
+	<button onclick="cloneRange()">克隆</button>
+	<!-- cloneContents -->
+	<div id="div">
+		hello,world!
+		<br>
+		<button onclick="cloneContent()">克隆</button>
+		<br>
+	</div>
+	<script type="text/javascript">
+	function cloneContent(){	
+		var div = document.getElementById("div");
+		var rangeObj = document.createRange();
+		rangeObj.selectNodeContents(div);
+		var Content = rangeObj.cloneContents();
+		div.appendChild(Content);
+	}
+	</script>
+	<!-- extractContents -->
+	<div id="srcDiv" style="width:300px;height:100px;background-color: #ccc;">This is content</div>
+	<div id="distDiv" style="width:300px;height:100px;background-color:bisque;"></div>
+	<button onclick="moveContent()">移动内容</button>
+	<script type="text/javascript">
+		function moveContent(){
+			var srcDiv = document.getElementById("srcDiv");
+			var distDiv = document.getElementById("distDiv");
+			var rangeObj = document.createRange();
+			rangeObj.selectNodeContents(srcDiv);
+			var docFragment = rangeObj.extractContents();
+			distDiv.appendChild(docFragment);
+		}
+	</script>
+</body>
+</html>

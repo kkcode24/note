@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>article element</title>
+</head>
+<body>
+	<!-- 
+	article元素，section元素，nav元素，aside元素，time元素与微格式 
+	-->
+	
+	<!-- 
+	article元素代表文档、页面或应用程序中独立的、完整的、可以独自被外部引用的内容。
+	它可以是一篇博客或者报刊中的文章，一篇论坛帖子，一段用户评论或独立的插件,或其他任何独立的内容。
+	article元素是可以嵌套使用的
+	article元素可以用来表示插件
+	 -->
+
+	<article>
+		<header>
+			<h1>This is title one</h1>
+			<p>Welcome to my web page</p>
+		</header>
+		<!-- 这是内容部分 -->
+		<article>
+			<header>author</header>
+			<p>review or comment</p>
+			<footer>time</footer>
+		</article>
+		<footer>
+			<p>This is bottom</p>
+		</footer>
+	</article>
+	<!-- This is article plug ins part -->
+	<article>
+		<h1>This is a embedded web page</h1>
+		<object>
+			<embed src="#" width="600" height="400"></embed>
+		</object>
+	</article>
+	<!--It can not display correctly in Firefox
+	    It can display correctly in Chrome
+	-->
+	<script type="text/javascript">
+		setInterval(function(){
+			alert('hello world');
+		},3000)
+	</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		function cry(){
+			alert('呜呜，命苦啊');
+		}
+		function la(){
+			alert('哈哈，中了100万');
+		}
+
+		function addla(){
+			document.getElementsByTagName('p')[0].addEventListener('click',la,false);
+		}
+		function addcry(){
+			document.getElementsByTagName('p')[0].addEventListener('click',cry,false);
+		}
+		function remla(){
+			document.getElementsByTagName('p')[0].removeEventListener('click',la,false);
+		}
+		function remcry(){
+			document.getElementsByTagName('p')[0].removeEventListener('click',cry,false);
+		}
+	</script>
+</head>
+<body>
+	<p>哈哈</p>
+	<button onclick="addla();">让你笑</button>
+	<button onclick="addcry();">让你哭</button>
+	<button onclick="remla();">你别笑</button>
+	<button onclick="remcry();">你别哭</button>
+</body>
+<script type="text/javascript">
+	/*解除事件绑定：
+	W3C模型下：Obj.removeEventlistener('事件',监听函数,true/false);
+	IE8及以下：obj.detachEvent('on事件',监听函数,true/false);
+	*/
+</script>
+</html>

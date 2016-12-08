@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>用闭包来完成js对象之私有属性封装</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	function Girl(name.lover){
+		this.name = name;
+		this.lover = lover;
+	}
+	var girl = new Girl('林黛玉','贾宝玉');
+	alert(girl.name+'喜欢'+girl.lover);
+	//让lover不能被外界访问
+	function Girl(name.lover){
+		var secret = lover;
+		this.name = name;
+		//通过showlove做接口，来读取私有属性secret
+		this.showlove = function(){
+			return secret;
+		}
+		//移情别恋
+		this.movelove = function(){
+			secret = '薛潘';
+		}
+	}
+	var girl = new Girl('林黛玉','贾宝玉');
+	alert(girl.name+'喜欢'+girl.showlove());
+	girl.movelove();
+	alert(girl.name+'喜欢'+girl.showlove());
+
+	//这是通过闭包来完成js面向对象的私有属性的封装。这是js大牛，道格拉斯提出来的。他以前在Yahoo，首席js架构师，现在在paypal
+	//json格式也是他倡导的，他的书：the javascript good parts
+</script>
+</html>

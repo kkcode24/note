@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>time and pubdate 属性</title>
+</head>
+<body>
+	<time datetime="2016-06-19">2016-06-19</time>
+	<time datetime="2016-06-19T20:00">2016-06-19</time>
+	<time datetime="2016-06-19T20:00Z">2016-06-19</time>
+	<time datetime="2016-06-19TZ20:00+09:00">2016-06-19</time>
+	<!-- T属于一个间隔(时间与日期的间隔) 分隔符也代表的是time。
+	     Z表示机器编码使用的是标准的UTC标准时间
+	     +09:00 时差，本地不需要
+	 -->
+	<!-- 微格式 pubdate用来明确指出当前具体的发布时间 -->
+	<!-- pubdate属性是一个可选的布尔类型的属性 -->
+	<article>
+		<header>
+			<h2>apple</h2>
+			<p>发布时间:
+			<time datetime="2016-06-19" pubdate>2016-06-19</time>
+			</p>
+			<p>舞会时间:
+			<time datetime="2016-06-25">2016-06-25</time>
+			</p>
+		</header>
+	</article>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>setStart</title>
+</head>
+<body>
+	<!-- setStart,setEnd 方法 -->
+	<div id="myDiv" style="color:red;">
+		这段文字会被删除
+	</div>
+	<button onclick="deleteWord()">删除文字</button>
+	<script type="text/javascript">
+		function deleteWord(){
+			var div = document.getElementById("myDiv");
+			var textNode = div.firstChild;
+			var rangeObj = document.createRange();
+			rangeObj.setStart(textNode,1);
+			rangeObj.setEnd(textNode,4);
+			rangeObj.deleteContents();
+		}
+	</script>
+</body>
+</html>

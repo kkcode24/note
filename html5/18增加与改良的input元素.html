@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>增加与改良的input元素</title>
+</head>
+<body>
+	<!-- url类型，email类型，date,time,datetiem,datetime-local,month,week,number,range,tel,color -->
+	<!-- url type -->
+	<form>
+		<input type="url" name="url" value="http://www.2345.com/?kkcode2345">
+		<input type="submit" value="submit">
+	</form>
+	<!-- email type -->
+	<form>
+		<input type="email" name="email" value="iwen@jikexueyuan.com">
+		<input type="submit" value="submit">
+	</form>
+	<!-- date type chrome support but FireFox not support-->
+	<input type="date" name="date" value="">
+	<!-- time type -->
+	<input type="time" name="time" value="10:00">
+	<!-- datetime type chrome and Firefox are not support -->
+	<input type="datetime" name="datetime">
+	<!-- datetime-local type -->
+	<input type="datetime-local" name="datetimelocal">
+	<!-- month element -->
+	<input type="month" name="month">
+	<!-- week element -->
+	<input type="week" name="week">
+	<!-- number type chrome and FireFox are support -->
+	<form>
+		<input type="number" name="number" value="10" min="10" max="100" step="5">
+		<!-- step="5" 每次增加5 -->
+		<input type="submit" value="submit">
+	</form>
+	<!-- 加法计算器 -->
+	<br>
+	<form>
+		<input type="number" id="num1">+
+		<input type="number" id="num2">=
+		<input type="number" id="result">
+		<input type="button" value="count" onclick="count()">
+	</form>
+	<script type="text/javascript">
+		function count(){
+			var n1 = document.getElementById("num1").valueAsNumber;
+			var n2 = document.getElementById("num2").valueAsNumber;
+			var result = document.getElementById("result").value = n1+n2;
+		}
+	</script>
+	<!-- range element -->
+	<input type="range" name="range" value="15" min="0" max="100" step="1">
+	<!-- search type -->
+	<input type="search">
+	<!-- tel type -->
+	<input type="tel">
+	<!-- color type -->
+	<input type="color" onchange="document.body.style.backgroundColor = document.getElementById('currentColor').textContent = this.value">
+	<span id="currentColor"></span>
+	<!-- output元素的追加 -->
+	<form id="testform">
+		<input type="range" name="range" id="range" min="0" max="100" value="10" step="1" onchange="value_change()">
+		<output id="output">10</output>
+	</form>
+	<script type="text/javascript">
+		function value_change(){
+			var number = document.getElementById("range").value;
+			document.getElementById('output').value = number;
+		}
+	</script>
+</body>
+</html>

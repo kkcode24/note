@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>闭包练习</title>
+</head>
+<body>
+	<ul>
+		<li>春</li>
+		<li>夏</li>
+		<li>秋</li>
+		<li>冬</li>
+	</ul>
+	<script type="text/javascript">
+	/*要求：点击li分别弹出 0 1 2 3*/
+	window.onload=function(){
+		 var lis=document.getElementsByTagName("li");
+
+         for(var i=0;i<lis.length;i++){
+         	lis[i].onclick=function(num){
+         		return function(){alert(num)};
+         		//return alert(num);为什么这么写不可以？
+         	}(i);
+         }
+	}
+	</script>
+</body>
+</html>
+
